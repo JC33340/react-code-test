@@ -3,14 +3,38 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
 const App = () => {
+
+  React.useEffect(()=>{
+    const prevMode = localStorage.getItem('darkMode')
+    if (prevMode){
+      setDarkMode(JSON.parse(prevMode))
+    }
+  },[])
+
+
+  const [darkMode,setDarkMode] = React.useState<Boolean>()
+
+  function handleChange(){
+    setDarkMode(prev=>{
+      localStorage.setItem('darkMode',JSON.stringify(!prev))
+      return !prev
+    })
+  }
+
+  if (darkMode){
+    document.documentElement.classList.add('dark-mode')
+  } else if (!darkMode){
+    document.documentElement.classList.remove('dark-mode')
+  }
+
   return (
     <div className='app'>
       <div className='app__header'>
         <h1 className='app__header--title'>Dark Mode Challenge</h1>
         
         {/* --The button that should toggle dark mode-- */}
-        <button className='app__header--button'>
-          <FontAwesomeIcon icon={faMoon} />
+        <button className='app__header--button' onClick={handleChange}>
+          <FontAwesomeIcon icon={darkMode?faSun:faMoon} color={darkMode?'#FFA500':''} />
         </button>
       </div>
 

@@ -29,6 +29,8 @@ None
 # Question 💡
 - How we would use Dark mode on other potential routes/components in a bigger application. How would you alter your solution for this?
 
+Could use React context in a headless component/route. Wrapping children/outlet components which require the information. 
+
 
 &nbsp;
 # What's Already Been Done 🏁
