@@ -4,15 +4,14 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
 const App = () => {
 
+  const [darkMode,setDarkMode] = React.useState<Boolean>()
+
   React.useEffect(()=>{
     const prevMode = localStorage.getItem('darkMode')
     if (prevMode){
       setDarkMode(JSON.parse(prevMode))
     }
   },[])
-
-
-  const [darkMode,setDarkMode] = React.useState<Boolean>()
 
   function handleChange(){
     setDarkMode(prev=>{
